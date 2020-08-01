@@ -49,6 +49,28 @@
       right: 15px;
       cursor: pointer;
     }
+
+    &-inputs {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin: 20px 0 40px;
+
+      &-item {
+        width: 48.61111111111111%;
+        margin-bottom: 20px;
+
+        &.description {
+          width: 100%;
+        }
+
+        input {
+          width: 100%;
+        }
+      }
+
+
+    }
   }
 
   &-footer {

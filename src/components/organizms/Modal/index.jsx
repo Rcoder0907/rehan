@@ -1,12 +1,29 @@
 import React from "react";
 import { CSSTransition } from "react-transition-group";
+import * as Yup from "yup";
+
 import Heading from "../../atoms/Heading";
 import close from "../../../assets/images/close.svg";
+import Form from "../Form";
+import FormField from "../Form/FormField";
 
 import "./style.scss";
+import SubmitButton from "../Form/SubmitButton";
+import FormAutoCompleteField from "../Form/FormAutoCompleteField";
+import FormTextAreaField from "../Form/FormTextAreaField";
 
 const Modal = ({ show, onClose }) => {
 
+  const validationSchema = Yup.object().shape({
+    nameOfSchool: Yup.string().required().label("Name of School"),
+    fieldOfStudy: Yup.string().required().label("Field of study"),
+    startYear: Yup.number().required().label("Start year"),
+  });
+
+  const handleSubmit = (values) => {
+    console.log(values)
+    onClose();
+  };
 
   return (
     <CSSTransition in={show} timeout={300} classNames="modal" unmountOnExit>
@@ -20,7 +37,64 @@ const Modal = ({ show, onClose }) => {
             onClick={onClose}
           />
           <Heading title={"New Education Modal"} size={"normal"} />
-          <div>Modal Content</div>
+
+          <Form
+            onSubmit={handleSubmit}
+            validationSchema={validationSchema}
+            initialValues={{
+              nameOfSchool: "",
+              fieldOfStudy: "",
+              startYear: "",
+              degree: "",
+              grade: "",
+              endYear: "",
+            }}
+          >
+            <ul className={"modal-wrapper-inputs"}>
+              <li className={"modal-wrapper-inputs-item"}>
+                <FormAutoCompleteField
+                  type={"text"}
+                  name={"nameOfSchool"}
+                  placeholder={"Name of School"}
+                />
+              </li>
+              <li className={"modal-wrapper-inputs-item"}>
+                <FormField
+                  placeholder={"Field of study"}
+                  name={"fieldOfStudy"}
+                />
+              </li>
+              <li className={"modal-wrapper-inputs-item"}>
+                <FormField placeholder={"Degree"} name={"degree"} />
+              </li>
+              <li className={"modal-wrapper-inputs-item"}>
+                <FormField placeholder={"Grade"} name={"grade"} />
+              </li>
+              <li className={"modal-wrapper-inputs-item"}>
+                <FormField
+                  type={"number"}
+                  placeholder={"Start year"}
+                  name={"startYear"}
+                />
+              </li>
+              <li className={"modal-wrapper-inputs-item"}>
+                <FormField
+                  type={"number"}
+                  placeholder={"End Year (Or expected)"}
+                  name={"endYear"}
+                />
+              </li>
+              <li className={"modal-wrapper-inputs-item description"}>
+                <FormTextAreaField
+                  name={"description"}
+                  placeholder={"Description"}
+                />
+              </li>
+            </ul>
+            <div className="modal-footer">
+              <SubmitButton title={"Save"} />
+            </div>
+          </Form>
         </div>
       </div>
     </CSSTransition>
