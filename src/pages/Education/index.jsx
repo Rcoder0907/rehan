@@ -1,20 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 
 import "./style.scss";
 import Heading from "../../components/atoms/Heading";
 import { useSelector } from "react-redux";
 import Button from "../../components/molecules/Button";
 import Text from "../../components/atoms/Text";
+import Modal from "../../components/organizms/Modal";
 
 const Education = () => {
   const name = useSelector((state) => state.userName.name);
 
+  const [showModal, setShowModal] = useState(false);
+
   return (
     <>
+      <Modal show={showModal} onClose={() => setShowModal(false)} />
       <div className={"education"}>
         <Heading title={`Welcome to ${name}'s educations page`} size={"big"} />
         <Button
           title={"Add new education"}
+          onClick={() => setShowModal(true)}
           className={"education-button"}
         />
         <Text
