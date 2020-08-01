@@ -6,13 +6,17 @@ import Text from "../../components/atoms/Text";
 import "./style.scss";
 import Input from "../../components/molecules/Input";
 import Button from "../../components/molecules/Button";
+import { useDispatch } from "react-redux";
+import { addUserName } from "../../redux/actions/userName";
 
 const WelcomePage = () => {
   const [name, setName] = useState("");
 
+  const dispatch = useDispatch();
+
   const handleSave = () => {
     if (name.trim()) {
-      console.log(name)
+      dispatch(addUserName(name));
     }
   };
 
