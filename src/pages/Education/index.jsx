@@ -9,8 +9,11 @@ import Modal from "../../components/organizms/Modal";
 
 const Education = () => {
   const name = useSelector((state) => state.userName.name);
+  const educations = useSelector((state) => state.education.education);
 
   const [showModal, setShowModal] = useState(false);
+
+  console.log("educations", educations);
 
   return (
     <>

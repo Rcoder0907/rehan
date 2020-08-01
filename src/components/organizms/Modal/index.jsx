@@ -11,8 +11,11 @@ import "./style.scss";
 import SubmitButton from "../Form/SubmitButton";
 import FormAutoCompleteField from "../Form/FormAutoCompleteField";
 import FormTextAreaField from "../Form/FormTextAreaField";
+import { useDispatch } from "react-redux";
+import { addEducation } from "../../../redux/actions/education";
 
 const Modal = ({ show, onClose }) => {
+  const dispatch = useDispatch();
 
   const validationSchema = Yup.object().shape({
     nameOfSchool: Yup.string().required().label("Name of School"),
@@ -21,7 +24,7 @@ const Modal = ({ show, onClose }) => {
   });
 
   const handleSubmit = (values) => {
-    console.log(values)
+    dispatch(addEducation(values));
     onClose();
   };
 
