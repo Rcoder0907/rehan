@@ -1,0 +1,42 @@
+* {
+  outline: none !important;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: SourceSansPro;
+}
+
+ul, li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+h1,h2,h3,h4,h5,h6,p {
+  margin: 0;
+}
+
+input, textarea {
+  background-color: $white;
+  border: 0;
+  font-size: 16px;
+  color: $gray;
+  padding: 15px;
+  border-radius: $border-radius;
+  box-shadow: $shadow;
+  width: 100%;
+  &::placeholder {
+    font-size: 16px;
+    color: $silver;
+    font-weight: $regular;
+  }
+}
+
+.container {
+  max-width: 1246px;
+  width: 100%;
+  margin: 0 auto;
+}
